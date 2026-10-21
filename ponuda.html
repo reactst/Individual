@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hr" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ponuda vozila · INDIVIDUAL Split</title>
+<meta name="description" content="Aktualna ponuda vozila INDIVIDUAL car company, Split — osobni, gospodarski, električni automobili i motocikli. Filtriraj, usporedi i nazovi.">
+<meta name="theme-color" content="#ece8df">
+<script>document.documentElement.classList.remove("no-js")</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600;1,700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="shop">
+
+<div class="loader" aria-hidden="true">
+  <div class="loader__top mono"><span>Individual — car company</span><span>Split, HR</span></div>
+  <div class="loader__word"><span style="--i:0">I</span><span style="--i:1">N</span><span style="--i:2">D</span><span style="--i:3">I</span><span style="--i:4">V</span><span style="--i:5">I</span><span style="--i:6">D</span><span style="--i:7">U</span><span style="--i:8">A</span><span style="--i:9">L</span></div>
+  <div class="loader__bot"><span class="mono">Pripremamo ponudu…</span><span class="loader__num">00</span></div>
+  <div class="loader__bar"></div>
+</div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hdr">
+  <a class="logo" href="index.html" aria-label="INDIVIDUAL — početna">Individ<i>u</i>al<sup>®</sup></a>
+  <nav class="nav" aria-label="Glavna navigacija">
+    <a class="nl" href="ponuda.html" aria-current="page"><span data-t="Ponuda">Ponuda</span></a>
+    <a class="nl" href="index.html#usluge"><span data-t="Usluge">Usluge</span></a>
+    <a class="nl" href="index.html#proces"><span data-t="Kako radimo">Kako radimo</span></a>
+    <a class="nl" href="index.html#kontakt"><span data-t="Nazovite">Nazovite</span></a>
+  </nav>
+  <a class="hdr__cta" href="tel:+385911533333"><i></i>091 153 33 33</a>
+  <button class="burger" aria-label="Izbornik" aria-expanded="false"><i></i><i></i></button>
+</header>
+<div class="menu" role="dialog" aria-label="Izbornik">
+  <nav>
+    <a class="big" href="ponuda.html">Pon<em>u</em>da</a>
+    <a class="big" href="index.html#usluge">Usluge</a>
+    <a class="big" href="index.html#proces">Proces</a>
+    <a class="big" href="index.html#kontakt">Nazovite</a>
+  </nav>
+  <div class="mono">091 153 33 33 · Split</div>
+</div>
+
+<main>
+  <section class="pg-head">
+    <span class="eyebrow">Katalog · 2026</span>
+    <h1 class="display" data-lines data-hero-in style="margin-top:1.4rem"><span class="ln"><span>Pon<em>u</em>da</span></span></h1>
+    <div class="pg-head__row">
+      <p data-reveal data-hero-in>Svako vozilo iz ove ponude možemo pokazati uživo u Splitu. Ne vidite što tražite? Nabavit ćemo ga — ciljana narudžba iz EU.</p>
+      <div class="count" data-reveal data-hero-in><span id="count">00</span><small>vozila prikazano</small></div>
+    </div>
+  </section>
+
+  <div class="filters" role="region" aria-label="Filteri">
+    <div class="filters__in">
+      <div class="pills" role="group" aria-label="Vrsta vozila">
+        <button class="pill" data-type="sve" aria-pressed="true">Sve</button>
+        <button class="pill" data-type="osobni" aria-pressed="false">Osobni</button>
+        <button class="pill" data-type="gospodarsko" aria-pressed="false">Gospodarski</button>
+        <button class="pill" data-type="elektricni" aria-pressed="false">Električni</button>
+        <button class="pill" data-type="motocikl" aria-pressed="false">Motocikli</button>
+      </div>
+      <div class="pills" role="group" aria-label="Dostupnost">
+        <button class="pill" data-avail="stock" aria-pressed="false">Odmah dostupno</button>
+        <button class="pill" data-avail="soon" aria-pressed="false">U dolasku</button>
+      </div>
+      <span class="filters__sp"></span>
+      <label class="search"><span class="sr-only">Pretraži</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Pretraži marku, model…" autocomplete="off"></label>
+      <label><span class="sr-only">Sortiraj</span>
+        <select class="sort" id="sort"><option value="novo">Najnovije</option><option value="cijena-asc">Cijena ↑</option><option value="cijena-desc">Cijena ↓</option></select>
+      </label>
+    </div>
+  </div>
+
+  <div class="grid" aria-live="polite"></div>
+</main>
+
+<footer class="ftr">
+  <div class="ftr__top">
+    <div><h4>INDIVIDUAL d.o.o.</h4><p>Dobavljač rabljenih vozila s tržišta EU od renomiranih aukcijskih i leasing kuća. Split.</p></div>
+    <div><h4>Stranice</h4><ul><li><a class="link-u" href="ponuda.html">Ponuda</a></li><li><a class="link-u" href="index.html#usluge">Usluge</a></li><li><a class="link-u" href="index.html#proces">Proces</a></li><li><a class="link-u" href="index.html#kontakt">Nazovite</a></li></ul></div>
+    <div><h4>Ponuda</h4><ul><li><a class="link-u" href="ponuda.html?t=osobni">Osobni</a></li><li><a class="link-u" href="ponuda.html?t=gospodarsko">Gospodarski</a></li><li><a class="link-u" href="ponuda.html?t=elektricni">Električni</a></li><li><a class="link-u" href="ponuda.html?t=motocikl">Motocikli</a></li></ul></div>
+    <div><h4>Nazovite</h4><ul><li><a class="link-u" href="tel:+385911533333">091 153 33 33</a></li><li><a class="link-u" href="https://www.facebook.com/INDIVIDUALautomobili/" target="_blank" rel="noopener">Facebook</a></li><li>Split, HR</li></ul></div>
+  </div>
+  <div class="ftr__word" aria-hidden="true">Individ<em>u</em>al</div>
+  <div class="ftr__bot mono"><span>© 2026 INDIVIDUAL d.o.o.</span><span>Cijene i dostupnost podložne promjeni.</span></div>
+</footer>
+
+<div class="callbar"><a href="tel:+385911533333">Nazovi</a><a href="index.html#kontakt">Upit</a></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

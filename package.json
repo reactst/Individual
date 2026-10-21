@@ -1,0 +1,18 @@
+{
+  "name": "individual-car-company",
+  "version": "1.0.0",
+  "description": "INDIVIDUAL car company Split - Premium 2026 Redizajn i Katalog Vozila",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "automobili",
+    "katalog",
+    "split",
+    "individual"
+  ],
+  "author": "INDIVIDUAL d.o.o.",
+  "license": "ISC"
+}
