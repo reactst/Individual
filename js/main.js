@@ -45,18 +45,25 @@
   /* ---------- loader ---------- */
   const loader = $(".loader");
   const seen = sessionStorage.getItem("ind-seen") === "1";
+  function unlockOverflow(el) {
+    setTimeout(() => {
+      $$(".ln", el).forEach((l) => (l.style.overflow = "visible"));
+    }, 1250);
+  }
   function startPage() {
     body.classList.add("is-ready");
-    $$("[data-hero-in]").forEach((el) => el.classList.add("is-in"));
+    $$("[data-hero-in]").forEach((el) => {
+      el.classList.add("is-in");
+      unlockOverflow(el);
+    });
     window.dispatchEvent(new Event("page:ready"));
   }
-  if (loader && (location.search + location.hash).includes("nol")) {
+  if (loader && (seen || (location.search + location.hash).includes("nol") || page !== "home")) {
     loader.remove();
     startPage();
-  } else if (loader) {
-    if (seen || reduce) loader.classList.add("is-quick");
+  } else if (loader && page === "home") {
     const num = $(".loader__num", loader);
-    const dur = seen || reduce ? 700 : 2100;
+    const dur = reduce ? 700 : 2100;
     const t0 = performance.now();
     root.classList.add("is-locked");
     const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
@@ -86,6 +93,7 @@
     entries.forEach((en) => {
       if (!en.isIntersecting) return;
       en.target.classList.add("is-in");
+      unlockOverflow(en.target);
       io.unobserve(en.target);
     });
   }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
@@ -101,11 +109,9 @@
 
   /* ---------- header, menu ---------- */
   const hdr = $(".hdr");
-  let lastY = scrollY;
   addEventListener("scroll", () => {
     const y = scrollY;
-    if (hdr && !body.classList.contains("menu-open")) hdr.classList.toggle("is-hidden", y > lastY && y > 300);
-    lastY = y;
+    if (hdr) hdr.classList.toggle("is-scrolled", y > 30);
   }, { passive: true });
   const burger = $(".burger");
   if (burger) {
@@ -184,6 +190,52 @@
       const msg = `Pozdrav, ja sam ${f.get("ime")}${v ? `, zanima me ${title(v)} (${v.year}, ${v.km} km)` : ", zanima me ponuda vozila"}.\n${f.get("poruka") || ""}\nKontakt: ${f.get("tel")}`;
       window.open(`https://wa.me/${C.wa}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
     });
+  }
+
+  /* ---------- contact section map (Split) ---------- */
+  const mapEl = $("#cta-map");
+  if (mapEl && typeof L !== "undefined") {
+    try {
+      const ctaMap = L.map("cta-map", {
+        center: [43.522, 16.465],
+        zoom: 12.5,
+        zoomControl: false,
+        attributionControl: false,
+        scrollWheelZoom: false,
+        dragging: true,
+      });
+
+      const tileLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+        maxZoom: 16,
+      });
+      tileLayer.on("tileerror", () => {
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }).addTo(ctaMap);
+      });
+      tileLayer.addTo(ctaMap);
+
+      const pinIcon = L.divIcon({
+        className: "cta-pin-wrap",
+        html: '<div class="cta-pin"><i></i></div>',
+        iconSize: [20, 20],
+        iconAnchor: [10, 10],
+      });
+
+      const marker = L.marker([43.5285, 16.4715], { icon: pinIcon }).addTo(ctaMap);
+      marker.on("click", () => window.open("https://maps.google.com/?q=Dujmovača+Split", "_blank", "noopener"));
+      mapEl.addEventListener("dblclick", () => window.open("https://maps.google.com/?q=Dujmovača+Split", "_blank", "noopener"));
+
+      if (window.IntersectionObserver) {
+        const obs = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => ctaMap.invalidateSize(), 150);
+            obs.disconnect();
+          }
+        }, { threshold: 0.1 });
+        obs.observe(mapEl);
+      }
+    } catch (err) {
+      console.warn("Map init:", err);
+    }
   }
 
   /* ======================================================================
